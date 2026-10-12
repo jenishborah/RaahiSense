@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+
+# SQLite
+*.db
+*.sqlite
+*.sqlite3
+
+# Generated data
+data/generated/
+data/database/
+
+# Python environment
+.env
+
+# OS
+.DS_Store
+Thumbs.db
