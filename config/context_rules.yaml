@@ -1,0 +1,130 @@
+schema_version: "1.0.0"
+
+dictionary_name: "RaahiSense Context Rules"
+description: >
+  Configurable context definitions for temporal vehicle-intelligence experiments.
+  Contexts are derived from normalized session metadata and observations.
+  They are source-independent and must not assume that a signal exists.
+
+global:
+  timestamp_unit: "ms"
+  minimum_confidence: 0.70
+  detection_method: "rule"
+
+  data_policy:
+    allowed_data_origins:
+      - synthetic
+      - simulation
+      - replay
+      - physical
+
+    missing_signal_policy: "abstain"
+    temporal_contexts_are_not_causal: true
+
+contexts:
+
+  # ---------------------------------------------------------
+  # SESSION-LEVEL CONTEXTS
+  # ---------------------------------------------------------
+  - context_type: "road"
+    source: "session_metadata"
+    field: "road_type"
+    confidence: 1.0
+
+  - context_type: "traffic"
+    source: "session_metadata"
+    field: "traffic_level"
+    confidence: 1.0
+
+  - context_type: "weather"
+    source: "session_metadata"
+    field: "weather"
+    confidence: 1.0
+
+  - context_type: "lighting"
+    source: "session_metadata"
+    field: "lighting"
+    confidence: 1.0
+
+  # ---------------------------------------------------------
+  # DRIVING CONTEXTS
+  # ---------------------------------------------------------
+  - context_type: "driving"
+    label: "STOPPED"
+    signal: "vehicle_speed"
+    rule:
+      operator: "<="
+      value: 1.0
+      unit: "km/h"
+    confidence: 0.95
+
+  - context_type: "driving"
+    label: "LOW_SPEED"
+    signal: "vehicle_speed"
+    rule:
+      operator: "range"
+      min_value: 1.0
+      max_value: 15.0
+      min_inclusive: false
+      max_inclusive: true
+      unit: "km/h"
+    confidence: 0.90
+
+  - context_type: "driving"
+    label: "CRUISING"
+    signal: "vehicle_speed"
+    rule:
+      operator: ">"
+      value: 15.0
+      unit: "km/h"
+    confidence: 0.90
+
+  - context_type: "driving"
+    label: "ACCELERATING"
+    signal: "vehicle_acceleration"
+    rule:
+      operator: ">="
+      value: 1.0
+      unit: "m/s2"
+    confidence: 0.90
+
+  - context_type: "driving"
+    label: "BRAKING"
+    signal: "vehicle_acceleration"
+    rule:
+      operator: "<="
+      value: -1.0
+      unit: "m/s2"
+    confidence: 0.90
+
+  # ---------------------------------------------------------
+  # ROAD-USER CONTEXTS
+  # ---------------------------------------------------------
+  - context_type: "road_user"
+    label: "PEDESTRIAN_ACTIVITY"
+    signal: "pedestrian_detected"
+    rule:
+      operator: "=="
+      value: true
+    confidence: 0.90
+
+  - context_type: "road_user"
+    label: "VEHICLE_ACTIVITY"
+    signal: "vehicle_detected"
+    rule:
+      operator: "=="
+      value: true
+    confidence: 0.90
+
+insufficient_evidence:
+  enabled: true
+  missing_signal_policy: "abstain"
+  low_confidence_policy:
+    threshold: 0.50
+    action: "abstain"
+
+reporting:
+  record_detection_version: true
+  record_data_origin: true
+  record_confidence: true
+  record_source: true

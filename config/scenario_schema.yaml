@@ -1,762 +1,96 @@
-schema_version: "1.0.0"
+schema_version: 1.0.0
+schema_name: RaahiSense Scenario Schema
+description: 'Reproducible scenario specification for generating complete temporal
+  vehicle-intelligence sessions. Each scenario defines its environment, road, traffic,
+  ego vehicle, road users, signals, events, contexts, faults, noise conditions, and
+  hidden ground truth.
 
-schema_name: "RaahiSense Scenario Schema"
-description: >
-  Reproducible scenario specification for generating complete temporal
-  vehicle-intelligence sessions. Each scenario defines its environment,
-  road, traffic, ego vehicle, road users, signals, events, contexts,
-  faults, noise conditions, and hidden ground truth.
-
+  '
 generator:
-  generator_name: "RaahiSense Synthetic Scenario Generator"
-  generator_version: "1.0.0"
-
+  generator_name: RaahiSense Synthetic Scenario Generator
+  generator_version: 1.0.0
   reproducibility:
     seed_required: true
     deterministic: true
     same_seed_same_scenario: true
-
   output:
     session_required: true
-    data_origin: "synthetic"
-    timestamp_unit: "ms"
-    timestamp_reference: "unix_epoch_ms"
-
-
-# ============================================================
-# SCENARIO STRUCTURE
-# ============================================================
-
+    data_origin: synthetic
+    timestamp_unit: ms
+    timestamp_reference: unix_epoch_ms
 scenario_structure:
-
   required:
-    - scenario_id
-    - scenario_family
-    - seed
-    - duration_seconds
-    - environment
-    - road
-    - traffic
-    - ego_vehicle
-    - signals
-    - events
-    - contexts
-    - faults
-    - noise
-    - ground_truth
-
+  - scenario_id
+  - scenario_family
+  - seed
+  - duration_seconds
+  - environment
+  - road
+  - traffic
+  - ego_vehicle
+  - signals
+  - events
+  - contexts
+  - faults
+  - noise
+  - ground_truth
   optional:
-    - road_users
-    - description
-    - metadata
-
-
-# ============================================================
-# INITIAL SCENARIO FAMILIES
-# ============================================================
-
+  - road_users
+  - description
+  - metadata
 scenario_families:
-
   S01:
-    scenario_family: "NORMAL_CITY"
-    description: "Normal city driving"
-
+    scenario_family: NORMAL_CITY
+    description: Normal city driving
   S02:
-    scenario_family: "HIGHWAY"
-    description: "Highway driving"
-
+    scenario_family: HIGHWAY
+    description: Highway driving
   S03:
-    scenario_family: "STOP_AND_GO"
-    description: "Stop-and-go traffic"
-
+    scenario_family: STOP_AND_GO
+    description: Stop-and-go traffic
   S04:
-    scenario_family: "PEDESTRIAN_CROSSING"
-    description: "Pedestrian crossing scenario"
-
+    scenario_family: PEDESTRIAN_CROSSING
+    description: Pedestrian crossing scenario
   S05:
-    scenario_family: "VEHICLE_CUT_IN"
-    description: "Vehicle cut-in scenario"
-
+    scenario_family: VEHICLE_CUT_IN
+    description: Vehicle cut-in scenario
   S06:
-    scenario_family: "DENSE_TRAFFIC"
-    description: "Dense traffic scenario"
-
+    scenario_family: DENSE_TRAFFIC
+    description: Dense traffic scenario
   S07:
-    scenario_family: "BATTERY_TEMPERATURE"
-    description: "Battery temperature increase scenario"
-
+    scenario_family: BATTERY_TEMPERATURE
+    description: Battery temperature increase scenario
   S08:
-    scenario_family: "SENSOR_ANOMALY"
-    description: "Sensor anomaly scenario"
-
+    scenario_family: SENSOR_ANOMALY
+    description: Sensor anomaly scenario
   S09:
-    scenario_family: "COMMUNICATION_ERROR"
-    description: "Communication error scenario"
-
+    scenario_family: COMMUNICATION_ERROR
+    description: Communication error scenario
   S10:
-    scenario_family: "ADAS_DISENGAGEMENT"
-    description: "ADAS disengagement scenario"
-
-
-# ============================================================
-# BASE SCENARIO PARAMETERS
-# ============================================================
-
+    scenario_family: ADAS_DISENGAGEMENT
+    description: ADAS disengagement scenario
 scenario:
-
   scenario_id:
-    type: "string"
+    type: string
     required: true
-    pattern: "^[a-z0-9_]+$"
-
+    pattern: ^[a-z0-9_]+$
   scenario_family:
-    type: "enum"
+    type: enum
     required: true
     values:
-      - "NORMAL_CITY"
-      - "HIGHWAY"
-      - "STOP_AND_GO"
-      - "PEDESTRIAN_CROSSING"
-      - "VEHICLE_CUT_IN"
-      - "DENSE_TRAFFIC"
-      - "BATTERY_TEMPERATURE"
-      - "SENSOR_ANOMALY"
-      - "COMMUNICATION_ERROR"
-      - "ADAS_DISENGAGEMENT"
-
+    - NORMAL_CITY
+    - HIGHWAY
+    - STOP_AND_GO
+    - PEDESTRIAN_CROSSING
+    - VEHICLE_CUT_IN
+    - DENSE_TRAFFIC
+    - BATTERY_TEMPERATURE
+    - SENSOR_ANOMALY
+    - COMMUNICATION_ERROR
+    - ADAS_DISENGAGEMENT
   seed:
-    type: "integer"
+    type: integer
     required: true
-
   duration_seconds:
-    type: "number"
+    type: number
     required: true
-    minimum: 10
-
-  description:
-    type: "string"
-    required: false
-
-
-# ============================================================
-# ENVIRONMENT
-# ============================================================
-
-environment:
-
-  road_type:
-    type: "enum"
-    values:
-      - "city"
-      - "highway"
-
-  weather:
-    type: "enum"
-    values:
-      - "clear"
-      - "rain"
-      - "fog"
-      - "overcast"
-
-  lighting:
-    type: "enum"
-    values:
-      - "day"
-      - "night"
-      - "dawn"
-      - "dusk"
-
-  traffic_level:
-    type: "enum"
-    values:
-      - "low"
-      - "medium"
-      - "high"
-      - "dense"
-
-  region:
-    type: "string"
-    required: false
-
-  latitude:
-    type: "number"
-    required: false
-
-  longitude:
-    type: "number"
-    required: false
-
-
-# ============================================================
-# ROAD
-# ============================================================
-
-road:
-
-  road_type:
-    type: "enum"
-    values:
-      - "urban"
-      - "highway"
-      - "intersection"
-      - "residential"
-      - "arterial"
-
-  lane_count:
-    type: "integer"
-    minimum: 1
-
-  speed_limit_kmh:
-    type: "number"
-    minimum: 0
-
-  road_condition:
-    type: "enum"
-    values:
-      - "normal"
-      - "wet"
-      - "poor"
-
-  intersection_present:
-    type: "boolean"
-
-
-# ============================================================
-# TRAFFIC
-# ============================================================
-
-traffic:
-
-  level:
-    type: "enum"
-    values:
-      - "low"
-      - "medium"
-      - "high"
-      - "dense"
-
-  average_vehicle_count:
-    type: "integer"
-    minimum: 0
-
-  average_speed_kmh:
-    type: "number"
-    minimum: 0
-
-  congestion_factor:
-    type: "number"
-    minimum: 0.0
-    maximum: 1.0
-
-
-# ============================================================
-# EGO VEHICLE
-# ============================================================
-
-ego_vehicle:
-
-  vehicle_id:
-    type: "string"
-    required: true
-
-  initial_speed_kmh:
-    type: "number"
-    minimum: 0
-
-  initial_soc:
-    type: "number"
-    minimum: 0
-    maximum: 100
-
-  battery_temperature_c:
-    type: "number"
-
-  initial_battery_power_kw:
-    type: "number"
-    required: false
-
-  initial_heading_deg:
-    type: "number"
-    minimum: 0
-    maximum: 360
-
-  initial_latitude:
-    type: "number"
-    required: false
-
-  initial_longitude:
-    type: "number"
-    required: false
-
-
-# ============================================================
-# ROAD USERS
-# ============================================================
-
-road_users:
-
-  enabled:
-    type: "boolean"
-
-  users:
-
-    - id:
-        type: "string"
-
-      type:
-        type: "enum"
-        values:
-          - "pedestrian"
-          - "vehicle"
-
-      initial_distance_m:
-        type: "number"
-        minimum: 0
-
-      initial_speed_mps:
-        type: "number"
-        minimum: 0
-
-      crossing_speed_mps:
-        type: "number"
-        required: false
-
-      relative_lane:
-        type: "integer"
-        required: false
-
-      behavior:
-        type: "enum"
-        values:
-          - "stationary"
-          - "crossing"
-          - "approaching"
-          - "cut_in"
-          - "following"
-          - "departing"
-
-
-# ============================================================
-# SIGNAL GENERATION
-# ============================================================
-
-signals:
-
-  generation_frequency:
-
-    vehicle:
-      frequency_hz: 10
-
-    road_user:
-      frequency_hz: 10
-
-    gps:
-      frequency_hz: 1
-
-    battery:
-      frequency_hz: 1
-
-    diagnostic:
-      frequency_hz: 0.1
-
-  enabled:
-    - "vehicle_speed"
-    - "vehicle_acceleration"
-    - "vehicle_deceleration"
-    - "brake_pressure"
-    - "steering_angle"
-    - "throttle_position"
-    - "vehicle_heading"
-    - "battery_soc"
-    - "battery_temperature"
-    - "battery_power"
-    - "energy_consumption"
-    - "pedestrian_detected"
-    - "pedestrian_distance"
-    - "vehicle_detected"
-    - "vehicle_distance"
-    - "collision_warning"
-    - "forward_collision_warning"
-    - "lane_departure_warning"
-    - "emergency_braking_active"
-
-
-# ============================================================
-# EVENTS
-# ============================================================
-
-events:
-
-  generation_enabled: true
-
-  supported_event_types:
-
-    - "SHARP_BRAKING"
-    - "PEDESTRIAN_DETECTED"
-    - "VEHICLE_DETECTED"
-    - "COLLISION_WARNING"
-    - "LANE_DEPARTURE_WARNING"
-    - "EMERGENCY_BRAKING"
-
-  event_parameters:
-
-    SHARP_BRAKING:
-      enabled: true
-      braking_threshold_ms2: -3.0
-      minimum_duration_ms: 200
-
-    PEDESTRIAN_DETECTED:
-      enabled: true
-
-    VEHICLE_DETECTED:
-      enabled: true
-
-    COLLISION_WARNING:
-      enabled: true
-
-    LANE_DEPARTURE_WARNING:
-      enabled: true
-
-    EMERGENCY_BRAKING:
-      enabled: true
-
-
-# ============================================================
-# CONTEXT
-# ============================================================
-
-contexts:
-
-  enabled: true
-
-  supported_types:
-
-    - "traffic"
-    - "weather"
-    - "road"
-    - "road_user"
-    - "lighting"
-    - "driving"
-
-  temporal_context:
-    include_before_event_ms: 5000
-    include_after_event_ms: 5000
-
-
-# ============================================================
-# FAULT INJECTION
-# ============================================================
-
-faults:
-
-  enabled: false
-
-  supported_types:
-
-    - "BATTERY_TEMPERATURE_INCREASE"
-    - "SENSOR_ANOMALY"
-    - "COMMUNICATION_ERROR"
-    - "DIAGNOSTIC_WARNING"
-
-  parameters:
-
-    battery_temperature_increase:
-      enabled: false
-      start_temperature_c: 34
-      target_temperature_c: 55
-      increase_rate_c_per_minute: 5
-
-    sensor_anomaly:
-      enabled: false
-      signal: null
-      anomaly_type:
-        - "bias"
-        - "spike"
-        - "stuck"
-        - "dropout"
-
-    communication_error:
-      enabled: false
-      affected_source: null
-      delay_ms: 500
-      dropout_probability: 0.10
-
-    diagnostic_warning:
-      enabled: false
-      code: null
-      description: null
-
-
-# ============================================================
-# NOISE AND DATA QUALITY
-# ============================================================
-
-noise:
-
-  enabled: true
-
-  measurement_noise:
-
-    sensor_noise_std: 0.05
-
-  timestamp_jitter:
-
-    enabled: true
-    jitter_ms: 100
-
-  source_delay:
-
-    enabled: false
-    delay_ms: 0
-
-  missing_data:
-
-    enabled: false
-    probability: 0.0
-
-  conflicting_evidence:
-
-    enabled: false
-
-
-# ============================================================
-# DATASET VARIANTS
-# ============================================================
-
-dataset_variants:
-
-  clean:
-    measurement_noise: false
-    missing_data_probability: 0.0
-    timestamp_jitter_ms: 0
-    source_delay_ms: 0
-    conflicting_evidence: false
-
-  measurement_noise:
-    measurement_noise: true
-    missing_data_probability: 0.0
-    timestamp_jitter_ms: 0
-    source_delay_ms: 0
-    conflicting_evidence: false
-
-  missing_1_percent:
-    measurement_noise: true
-    missing_data_probability: 0.01
-    timestamp_jitter_ms: 0
-    source_delay_ms: 0
-    conflicting_evidence: false
-
-  missing_5_percent:
-    measurement_noise: true
-    missing_data_probability: 0.05
-    timestamp_jitter_ms: 0
-    source_delay_ms: 0
-    conflicting_evidence: false
-
-  missing_10_percent:
-    measurement_noise: true
-    missing_data_probability: 0.10
-    timestamp_jitter_ms: 0
-    source_delay_ms: 0
-    conflicting_evidence: false
-
-  missing_20_percent:
-    measurement_noise: true
-    missing_data_probability: 0.20
-    timestamp_jitter_ms: 0
-    source_delay_ms: 0
-    conflicting_evidence: false
-
-  jitter_50ms:
-    measurement_noise: true
-    missing_data_probability: 0.0
-    timestamp_jitter_ms: 50
-    source_delay_ms: 0
-    conflicting_evidence: false
-
-  jitter_100ms:
-    measurement_noise: true
-    missing_data_probability: 0.0
-    timestamp_jitter_ms: 100
-    source_delay_ms: 0
-    conflicting_evidence: false
-
-  jitter_500ms:
-    measurement_noise: true
-    missing_data_probability: 0.0
-    timestamp_jitter_ms: 500
-    source_delay_ms: 0
-    conflicting_evidence: false
-
-  source_delay:
-    measurement_noise: true
-    missing_data_probability: 0.0
-    timestamp_jitter_ms: 0
-    source_delay_ms: 500
-    conflicting_evidence: false
-
-  conflicting_evidence:
-    measurement_noise: true
-    missing_data_probability: 0.0
-    timestamp_jitter_ms: 100
-    source_delay_ms: 0
-    conflicting_evidence: true
-
-
-# ============================================================
-# GROUND TRUTH
-# ============================================================
-
-ground_truth:
-
-  enabled: true
-
-  hidden_during_evaluation: true
-
-  fields:
-
-    target_event:
-      required: true
-
-    target_time_ms:
-      required: true
-
-    relevant_events:
-      required: true
-
-    relevant_observations:
-      required: true
-
-    temporal_relationships:
-      required: true
-
-    causal_claim_allowed:
-      default: false
-
-  temporal_relationships:
-
-    allowed:
-      - "PRECEDES"
-      - "FOLLOWS"
-      - "OVERLAPS"
-      - "CO_OCCURS"
-      - "WITHIN_WINDOW"
-      - "ASSOCIATED_WITH"
-
-    causal_claim_allowed: false
-
-
-# ============================================================
-# EXAMPLE SCENARIO
-# ============================================================
-
-examples:
-
-  pedestrian_crossing_001:
-
-    scenario_id: "pedestrian_crossing_001"
-    scenario_family: "PEDESTRIAN_CROSSING"
-
-    seed: 1042
-
-    duration_seconds: 60
-
-    environment:
-      road_type: "city"
-      weather: "clear"
-      lighting: "day"
-      traffic_level: "medium"
-
-    road:
-      road_type: "urban"
-      lane_count: 2
-      speed_limit_kmh: 50
-      road_condition: "normal"
-      intersection_present: true
-
-    traffic:
-      level: "medium"
-      average_vehicle_count: 12
-      average_speed_kmh: 32
-      congestion_factor: 0.40
-
-    ego_vehicle:
-      vehicle_id: "ego_001"
-      initial_speed_kmh: 40
-      initial_soc: 78
-      battery_temperature_c: 34
-      initial_battery_power_kw: 18
-      initial_heading_deg: 90
-
-    road_users:
-      enabled: true
-
-      users:
-
-        - id: "pedestrian_001"
-          type: "pedestrian"
-          initial_distance_m: 35
-          initial_speed_mps: 0.0
-          crossing_speed_mps: 1.4
-          behavior: "crossing"
-
-    signals:
-      enabled:
-        - "vehicle_speed"
-        - "vehicle_acceleration"
-        - "brake_pressure"
-        - "battery_soc"
-        - "battery_temperature"
-        - "battery_power"
-        - "pedestrian_detected"
-        - "pedestrian_distance"
-
-    events:
-
-      - type: "PEDESTRIAN_DETECTED"
-        start_offset_ms: 1000000
-
-      - type: "SHARP_BRAKING"
-        start_offset_ms: 1042000
-
-    contexts:
-
-      - type: "traffic"
-        label: "medium"
-
-      - type: "road"
-        label: "urban"
-
-      - type: "road_user"
-        label: "pedestrian_crossing"
-
-    faults:
-      enabled: false
-
-    noise:
-      enabled: true
-      sensor_noise_std: 0.05
-      timestamp_jitter_ms: 100
-
-    ground_truth:
-
-      target_event: "SHARP_BRAKING"
-
-      target_time_ms: 1042000
-
-      relevant_events:
-        - "PEDESTRIAN_DETECTED"
-        - "PEDESTRIAN_NEAR_ROAD"
-
-      relevant_observations:
-        - "obs_103"
-        - "obs_104"
-        - "obs_105"
-
-      temporal_relationships:
-
-        - type: "PRECEDES"
-          source: "PEDESTRIAN_NEAR_ROAD"
-          target: "SHARP_BRAKING"
-
-      causal_claim_allowed: false
