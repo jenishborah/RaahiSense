@@ -1,0 +1,5 @@
+path_hint,file_count,total_size_MB
+Radar hint,19918,143.86398601531982
+Camera/image/video hint,10922,2974.9640073776245
+LiDAR/point-cloud hint,2,3.35693359375e-4
+GNSS/GPS/IMU hint,1,1.587209701538086

@@ -1,0 +1,8 @@
+path_hint,extension,file_count
+Camera/image/video hint,jpg,10919
+Camera/image/video hint,csv,2
+Camera/image/video hint,npy,1
+GNSS/GPS/IMU hint,csv,1
+LiDAR/point-cloud hint,npy,2
+Radar hint,csv,19917
+Radar hint,json,1

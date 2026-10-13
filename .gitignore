@@ -103,3 +103,7 @@ data/raw/TIAND_MULTIMODAL_DATASET/
 # ------------------------------------------------------------
 pip-wheel-metadata/
 MANIFEST
+.Rproj.user
+
+.RData
+.Rhistory

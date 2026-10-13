@@ -1,0 +1,8 @@
+metric,value
+raw_dataset_root,E:/JB_Mtech_Project/RaahiSense/data/raw/TIAND_MULTIMODAL_DATASET
+file_count,30843
+directory_count,23
+total_size_bytes,3271992844
+total_size_GB,3.0473
+files_with_zero_bytes,0
+files_with_missing_size,0
