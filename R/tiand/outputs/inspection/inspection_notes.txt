@@ -1,0 +1,21 @@
+RaahiSense - TIAND file structure inspection
+Inventory CSV: E:/JB_Mtech_Project/RaahiSense/data/manifests/tiand/tiand_file_inventory.csv
+Inventory rows: 30843
+Files resolved on disk: 30843
+Inventory paths not resolved: 0
+Filename clock-like patterns detected: 30836
+Image candidates inspected: 0
+Tabular files sampled: 0
+Calibration/JSON/NPY files inspected: 4
+
+Important interpretation limits:
+- Folder names and file extensions are hints, not proof of sensor semantics.
+- Filename timestamp patterns are candidates; date, timezone, units, and clock origin remain unverified.
+- Existing timestamps do not prove cross-sensor synchronization.
+- Only a limited sample of CSV files is read; full schemas may vary between files.
+- Raw dataset files were not written to or modified by this script.
+
+Optional packages:
+magick installed: FALSE
+jsonlite installed: TRUE
+reticulate installed: TRUE

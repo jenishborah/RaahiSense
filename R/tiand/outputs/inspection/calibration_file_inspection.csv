@@ -1,0 +1,5 @@
+relative_path,extension,size_bytes,content_preview,inspection_status
+Calibration_files/Calibration_files/LIDAR/LiDAR_rotation_matrix.npy,npy,200,,File exists; contents not parsed
+Calibration_files/Calibration_files/LIDAR/LiDAR_translation_matrix.npy,npy,152,,File exists; contents not parsed
+Calibration_files/Calibration_files/RADAR/Radar_camera_Projection_matrix.npy,npy,224,,File exists; contents not parsed
+Calibration_files/Calibration_files/RADAR/Radar_mounting_positions.json,json,1469,,File exists; contents not parsed
