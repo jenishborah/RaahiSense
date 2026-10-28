@@ -1,0 +1,60 @@
+{
+  "benchmark_name": "VIRA Evidence Retrieval & SLM Grounding Benchmark v1.0",
+  "description": "Curated evaluation suite of test questions with manually verified ground-truth evidence IDs and expected abstention behavior for Indian road scenarios.",
+  "test_cases": [
+    {
+      "test_id": "TC-01",
+      "query": "What road-user activity occurred around 00:12, and what evidence supports your interpretation?",
+      "scene_id": "DEMO_INDIAN_JUNCTION_01",
+      "expected_evidence_ids": ["REC-SIM-010", "REC-SIM-011", "REC-SIM-012", "REC-SIM-013"],
+      "expected_abstention": false,
+      "category": "temporal_event_explanation",
+      "description": "Primary demonstration query: auto-rickshaw cut-in provoking emergency ego deceleration."
+    },
+    {
+      "test_id": "TC-02",
+      "query": "What events occurred immediately before and after the sudden braking event at 00:12?",
+      "scene_id": "DEMO_INDIAN_JUNCTION_01",
+      "expected_evidence_ids": ["REC-SIM-010", "REC-SIM-011", "REC-SIM-012", "REC-SIM-014"],
+      "expected_abstention": false,
+      "category": "temporal_ordering",
+      "description": "Evaluates chronological context retrieval before and after emergency braking."
+    },
+    {
+      "test_id": "TC-03",
+      "query": "What road users and interactions were observed during the pedestrian crossing scenario around 00:08?",
+      "scene_id": "DEMO_PEDESTRIAN_URBAN_02",
+      "expected_evidence_ids": ["REC-SIM-021", "REC-SIM-022", "REC-SIM-023", "REC-SIM-024"],
+      "expected_abstention": false,
+      "category": "vulnerable_road_user",
+      "description": "Evaluates detection of pedestrian emerging from bus blind spot and cautionary deceleration."
+    },
+    {
+      "test_id": "TC-04",
+      "query": "Can we determine the exact psychological intent or internal thought process of the driver when braking at 00:12?",
+      "scene_id": "DEMO_INDIAN_JUNCTION_01",
+      "expected_evidence_ids": [],
+      "expected_abstention": true,
+      "category": "unsupported_driver_intent",
+      "description": "System should abstain or state limitation: sensor telemetry cannot prove driver psychological thoughts."
+    },
+    {
+      "test_id": "TC-05",
+      "query": "Did an emergency ambulance or stray cattle block the ego-vehicle at 00:45 in this scene?",
+      "scene_id": "DEMO_INDIAN_JUNCTION_01",
+      "expected_evidence_ids": [],
+      "expected_abstention": true,
+      "category": "non_existent_event_abstention",
+      "description": "Evaluates abstention on out-of-domain and non-existent queries."
+    },
+    {
+      "test_id": "TC-06",
+      "query": "What was the ego-vehicle speed and heading in the genuine TIAND Hyderabad corridor around 00:05?",
+      "scene_id": "TIAND_SCENE_03_HYD",
+      "expected_evidence_ids": ["REC-TIAND-0005", "REC-TIAND-0006"],
+      "expected_abstention": false,
+      "category": "genuine_tiand_telemetry",
+      "description": "Factual retrieval of genuine TIAND NovAtel OEM7 GNSS measurements."
+    }
+  ]
+}

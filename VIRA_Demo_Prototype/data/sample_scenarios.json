@@ -1,0 +1,32 @@
+{
+  "scenes": [
+    {
+      "scene_id": "TIAND_SCENE_03_HYD",
+      "name": "TIAND Genuine Multimodal Scene 03 (Hyderabad Urban Corridor)",
+      "location": "Gachibowli, Hyderabad, Telangana, India",
+      "duration_s": 30.0,
+      "description": "Genuine recorded GNSS telemetry (NovAtel OEM7 INSPVA) and synchronized front camera recordings from the Indian driving TIAND dataset.",
+      "data_origin": "TIAND",
+      "primary_road_context": "Urban Multi-lane Arterial (TIAND Genuine Ground Truth)"
+    },
+    {
+      "scene_id": "DEMO_INDIAN_JUNCTION_01",
+      "name": "Bengaluru Outer Ring Road Mixed Junction (Simulated Scenario)",
+      "location": "Outer Ring Road (Bellandur Junction), Bengaluru, Karnataka, India",
+      "duration_s": 25.0,
+      "description": "Simulated multi-modal interaction scenario: sudden auto-rickshaw cut-in, ego emergency braking, and motorcycle evasion under high-density Indian traffic conditions.",
+      "data_origin": "synthetic_demo_data",
+      "primary_road_context": "Signalized Junction / Mixed Density / Two-Wheelers & Auto-Rickshaws"
+    },
+    {
+      "scene_id": "DEMO_PEDESTRIAN_URBAN_02",
+      "name": "Delhi MG Road Unmarked Pedestrian Crossing (Simulated Scenario)",
+      "location": "MG Road Corridor, New Delhi / Gurugram Border, India",
+      "duration_s": 20.0,
+      "description": "Simulated mid-block pedestrian crossing scenario where pedestrians emerge from behind a stationary DTC bus near an informal median gap.",
+      "data_origin": "synthetic_demo_data",
+      "primary_road_context": "Unmarked Mid-block Pedestrian Crossing with Median Barrier Gap"
+    }
+  ],
+  "records_count": 47
+}

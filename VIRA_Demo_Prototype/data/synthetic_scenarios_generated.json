@@ -1,0 +1,334 @@
+{
+  "scenes": [
+    {
+      "scene_id": "DEMO_INDIAN_JUNCTION_01",
+      "name": "Bengaluru Outer Ring Road Mixed Junction (Simulated Scenario)",
+      "location": "Outer Ring Road (Bellandur Junction), Bengaluru, Karnataka, India",
+      "duration_s": 25.0,
+      "description": "Simulated multi-modal interaction scenario: sudden auto-rickshaw cut-in, ego emergency braking, and motorcycle evasion under high-density Indian traffic conditions.",
+      "data_origin": "synthetic_demo_data",
+      "primary_road_context": "Signalized Junction / Mixed Density / Two-Wheelers & Auto-Rickshaws"
+    },
+    {
+      "scene_id": "DEMO_PEDESTRIAN_URBAN_02",
+      "name": "Delhi MG Road Unmarked Pedestrian Crossing (Simulated Scenario)",
+      "location": "MG Road Corridor, New Delhi / Gurugram Border, India",
+      "duration_s": 20.0,
+      "description": "Simulated mid-block pedestrian crossing scenario where pedestrians emerge from behind a stationary DTC bus near an informal median gap.",
+      "data_origin": "synthetic_demo_data",
+      "primary_road_context": "Unmarked Mid-block Pedestrian Crossing with Median Barrier Gap"
+    }
+  ],
+  "records": [
+    {
+      "record_id": "REC-SIM-001",
+      "scene_id": "DEMO_INDIAN_JUNCTION_01",
+      "timestamp_iso": "2024-03-15T09:30:00.000Z",
+      "timestamp_relative_s": 0.0,
+      "event_type": "EGO_TELEMETRY",
+      "road_user_category": "ego_vehicle",
+      "observation_description": "Ego-vehicle cruising steadily at 42.0 km/h in central lane. Throttle position: 22%. Steering angle: 0.2\u00b0.",
+      "source_sensor": "SIM_VEHICLE_CAN",
+      "confidence": 1.0,
+      "road_context": "Signalized Junction Approach / 3-Lane Arterial",
+      "evidence_reference": "SIM_CAN_FRAME:0001",
+      "data_origin": "synthetic_demo_data",
+      "status": "observed",
+      "metadata_json": {
+        "speed_kmh": 42.0,
+        "acceleration_ms2": 0.05,
+        "lane_id": "center_lane"
+      }
+    },
+    {
+      "record_id": "REC-SIM-002",
+      "scene_id": "DEMO_INDIAN_JUNCTION_01",
+      "timestamp_iso": "2024-03-15T09:30:04.200Z",
+      "timestamp_relative_s": 4.2,
+      "event_type": "ROAD_USER_DETECTION",
+      "road_user_category": "two_wheeler",
+      "observation_description": "Two motorized two-wheelers (Hero Splendor, Honda Activa) detected on left flank at 1.8m lateral distance, overtaking ego vehicle at 48 km/h.",
+      "source_sensor": "SIM_CAMERA_DETECTOR",
+      "confidence": 0.94,
+      "road_context": "Mixed Traffic / Lane Filtering Zone",
+      "evidence_reference": "CAM_DET_FRAME:0126",
+      "data_origin": "synthetic_demo_data",
+      "status": "observed",
+      "metadata_json": {
+        "users_detected": 2,
+        "relative_speed_kmh": 6.0,
+        "lateral_distance_m": 1.8
+      }
+    },
+    {
+      "record_id": "REC-SIM-003",
+      "scene_id": "DEMO_INDIAN_JUNCTION_01",
+      "timestamp_iso": "2024-03-15T09:30:08.500Z",
+      "timestamp_relative_s": 8.5,
+      "event_type": "ROAD_USER_DETECTION",
+      "road_user_category": "auto_rickshaw",
+      "observation_description": "Green-yellow Bajaj Compact auto-rickshaw detected in left nearside lane moving at 34 km/h, 14.5m ahead of ego vehicle.",
+      "source_sensor": "SIM_CAMERA_RADAR_FUSION",
+      "confidence": 0.96,
+      "road_context": "Signalized Junction Approach",
+      "evidence_reference": "FUSION_TRACK_ID:AR_44",
+      "data_origin": "synthetic_demo_data",
+      "status": "observed",
+      "metadata_json": {
+        "target_id": "AR_44",
+        "speed_kmh": 34.0,
+        "longitudinal_distance_m": 14.5
+      }
+    },
+    {
+      "record_id": "REC-SIM-010",
+      "scene_id": "DEMO_INDIAN_JUNCTION_01",
+      "timestamp_iso": "2024-03-15T09:30:10.800Z",
+      "timestamp_relative_s": 10.8,
+      "event_type": "ROAD_USER_DETECTION",
+      "road_user_category": "auto_rickshaw",
+      "observation_description": "Auto-rickshaw AR_44 begins sharp rightward lateral drift from left lane without activating direction turn indicators.",
+      "source_sensor": "SIM_CAMERA_DETECTOR",
+      "confidence": 0.93,
+      "road_context": "Signalized Junction Approach / Informal Merge",
+      "evidence_reference": "CAM_DET_FRAME:0324",
+      "data_origin": "synthetic_demo_data",
+      "status": "observed",
+      "metadata_json": {
+        "lateral_velocity_ms": 1.4,
+        "indicator_status": "OFF"
+      }
+    },
+    {
+      "record_id": "REC-SIM-011",
+      "scene_id": "DEMO_INDIAN_JUNCTION_01",
+      "timestamp_iso": "2024-03-15T09:30:11.900Z",
+      "timestamp_relative_s": 11.9,
+      "event_type": "CUT_IN",
+      "road_user_category": "auto_rickshaw",
+      "observation_description": "Auto-rickshaw AR_44 executes sudden acute cut-in directly across ego trajectory at 2.4m longitudinal headway gap.",
+      "source_sensor": "SIM_TEMPORAL_DETECTOR",
+      "confidence": 0.95,
+      "road_context": "Junction Merge Conflict Point",
+      "evidence_reference": "CUTIN_EVENT:001",
+      "data_origin": "synthetic_demo_data",
+      "status": "observed",
+      "metadata_json": {
+        "time_to_collision_s": 1.1,
+        "headway_gap_m": 2.4,
+        "yaw_angle_deg": 38.0
+      }
+    },
+    {
+      "record_id": "REC-SIM-012",
+      "scene_id": "DEMO_INDIAN_JUNCTION_01",
+      "timestamp_iso": "2024-03-15T09:30:12.400Z",
+      "timestamp_relative_s": 12.4,
+      "event_type": "SUDDEN_BRAKING",
+      "road_user_category": "ego_vehicle",
+      "observation_description": "Ego-vehicle executes emergency deceleration spike of -3.8 m/s\u00b2; ego speed drops rapidly from 40.5 km/h to 18.2 km/h in 1.2 seconds.",
+      "source_sensor": "SIM_IMU_WHEEL_SPEED",
+      "confidence": 0.99,
+      "road_context": "Junction Center Lane",
+      "evidence_reference": "IMU_PEAK_DECEL:12.4s",
+      "data_origin": "synthetic_demo_data",
+      "status": "observed",
+      "metadata_json": {
+        "peak_deceleration_ms2": -3.8,
+        "initial_speed_kmh": 40.5,
+        "post_speed_kmh": 18.2
+      }
+    },
+    {
+      "record_id": "REC-SIM-013",
+      "scene_id": "DEMO_INDIAN_JUNCTION_01",
+      "timestamp_iso": "2024-03-15T09:30:12.800Z",
+      "timestamp_relative_s": 12.8,
+      "event_type": "INFERRED_DECISION",
+      "road_user_category": "ego_vehicle",
+      "observation_description": "INFERRED: Ego deceleration was provoked by the abrupt cut-in of auto-rickshaw AR_44 to avert imminent frontal collision. Driver intent itself is unobserved.",
+      "source_sensor": "TEMPORAL_REASONING_ENGINE",
+      "confidence": 0.88,
+      "road_context": "Junction Center Lane",
+      "evidence_reference": "INFERRED_RULE_TEMPORAL_PROXIMITY_CUTIN",
+      "data_origin": "synthetic_demo_data",
+      "status": "inferred",
+      "metadata_json": {
+        "hypothesis": "Collision Avoidance Deceleration",
+        "causal_predecessor": "REC-SIM-011"
+      }
+    },
+    {
+      "record_id": "REC-SIM-014",
+      "scene_id": "DEMO_INDIAN_JUNCTION_01",
+      "timestamp_iso": "2024-03-15T09:30:13.600Z",
+      "timestamp_relative_s": 13.6,
+      "event_type": "NEAR_COLLISION",
+      "road_user_category": "two_wheeler",
+      "observation_description": "Trailing motorcycle in rear camera field swerves sharply towards road shoulder to avoid rear-ending the rapidly decelerating ego vehicle.",
+      "source_sensor": "SIM_REAR_CAMERA_DETECTOR",
+      "confidence": 0.91,
+      "road_context": "Trailing Queue Dynamics",
+      "evidence_reference": "REAR_CAM_EVASION:0408",
+      "data_origin": "synthetic_demo_data",
+      "status": "observed",
+      "metadata_json": {
+        "min_rear_clearance_m": 1.2,
+        "motorcycle_lateral_offset_m": 1.5
+      }
+    },
+    {
+      "record_id": "REC-SIM-015",
+      "scene_id": "DEMO_INDIAN_JUNCTION_01",
+      "timestamp_iso": "2024-03-15T09:30:16.200Z",
+      "timestamp_relative_s": 16.2,
+      "event_type": "TRAFFIC_SIGNAL_CHANGE",
+      "road_user_category": "none",
+      "observation_description": "Overhead gantry traffic signal transitions from Amber to Red ahead of junction stop line.",
+      "source_sensor": "SIM_CAMERA_TRAFFIC_LIGHT_CLASSIFIER",
+      "confidence": 0.98,
+      "road_context": "Signalized Junction Stop Line",
+      "evidence_reference": "TRAFFIC_LIGHT_DET:0486",
+      "data_origin": "synthetic_demo_data",
+      "status": "observed",
+      "metadata_json": {
+        "signal_state": "RED",
+        "distance_to_stop_line_m": 22.0
+      }
+    },
+    {
+      "record_id": "REC-SIM-016",
+      "scene_id": "DEMO_INDIAN_JUNCTION_01",
+      "timestamp_iso": "2024-03-15T09:30:20.000Z",
+      "timestamp_relative_s": 20.0,
+      "event_type": "EGO_TELEMETRY",
+      "road_user_category": "ego_vehicle",
+      "observation_description": "Ego-vehicle comes to complete standstill (0.0 km/h) behind queued auto-rickshaw AR_44 at the red signal.",
+      "source_sensor": "SIM_VEHICLE_CAN",
+      "confidence": 1.0,
+      "road_context": "Signalized Junction Stop Line",
+      "evidence_reference": "SIM_CAN_FRAME:0600",
+      "data_origin": "synthetic_demo_data",
+      "status": "observed",
+      "metadata_json": {
+        "speed_kmh": 0.0,
+        "stationary": true
+      }
+    },
+    {
+      "record_id": "REC-SIM-020",
+      "scene_id": "DEMO_PEDESTRIAN_URBAN_02",
+      "timestamp_iso": "2024-03-15T11:15:02.000Z",
+      "timestamp_relative_s": 2.0,
+      "event_type": "ROAD_USER_DETECTION",
+      "road_user_category": "bus",
+      "observation_description": "Stationary green low-floor DTC transit bus stopped in curbside bus bay with hazard indicators flashing.",
+      "source_sensor": "SIM_CAMERA_DETECTOR",
+      "confidence": 0.97,
+      "road_context": "Urban Arterial Corridor / Curbside Bus Stop",
+      "evidence_reference": "CAM_BUS_DET:0060",
+      "data_origin": "synthetic_demo_data",
+      "status": "observed",
+      "metadata_json": {
+        "vehicle_type": "DTC_bus",
+        "state": "stationary",
+        "lateral_position": "left_curb"
+      }
+    },
+    {
+      "record_id": "REC-SIM-021",
+      "scene_id": "DEMO_PEDESTRIAN_URBAN_02",
+      "timestamp_iso": "2024-03-15T11:15:06.100Z",
+      "timestamp_relative_s": 6.1,
+      "event_type": "ROAD_USER_DETECTION",
+      "road_user_category": "pedestrian",
+      "observation_description": "Pedestrian (adult male carrying shoulder bag) emerges from blind zone directly in front of the stationary bus onto the roadway.",
+      "source_sensor": "SIM_CAMERA_DETECTOR",
+      "confidence": 0.91,
+      "road_context": "Unmarked Mid-block Crossing Point",
+      "evidence_reference": "CAM_PED_DET:0183",
+      "data_origin": "synthetic_demo_data",
+      "status": "observed",
+      "metadata_json": {
+        "pedestrian_speed_ms": 1.2,
+        "occlusion_origin": "bus_frontal_blindspot"
+      }
+    },
+    {
+      "record_id": "REC-SIM-022",
+      "scene_id": "DEMO_PEDESTRIAN_URBAN_02",
+      "timestamp_iso": "2024-03-15T11:15:07.500Z",
+      "timestamp_relative_s": 7.5,
+      "event_type": "PEDESTRIAN_INTERACTION",
+      "road_user_category": "pedestrian",
+      "observation_description": "Pedestrian hesitates and raises right hand towards oncoming ego vehicle at 8.2m longitudinal distance.",
+      "source_sensor": "SIM_CAMERA_POSE_ESTIMATION",
+      "confidence": 0.89,
+      "road_context": "Mid-block Carriageway",
+      "evidence_reference": "POSE_GESTURE:0225",
+      "data_origin": "synthetic_demo_data",
+      "status": "observed",
+      "metadata_json": {
+        "gesture": "hand_raise_caution",
+        "longitudinal_distance_m": 8.2
+      }
+    },
+    {
+      "record_id": "REC-SIM-023",
+      "scene_id": "DEMO_PEDESTRIAN_URBAN_02",
+      "timestamp_iso": "2024-03-15T11:15:08.200Z",
+      "timestamp_relative_s": 8.2,
+      "event_type": "SUDDEN_BRAKING",
+      "road_user_category": "ego_vehicle",
+      "observation_description": "Ego-vehicle applies moderate-to-hard braking deceleration of -2.9 m/s\u00b2, speed reducing from 38.0 km/h to 14.5 km/h; acoustic horn pulse logged.",
+      "source_sensor": "SIM_VEHICLE_CAN",
+      "confidence": 0.99,
+      "road_context": "Mid-block Carriageway",
+      "evidence_reference": "BRAKE_PRESSURE_LOG:0246",
+      "data_origin": "synthetic_demo_data",
+      "status": "observed",
+      "metadata_json": {
+        "deceleration_ms2": -2.9,
+        "speed_drop_kmh": 23.5,
+        "horn_pulse": true
+      }
+    },
+    {
+      "record_id": "REC-SIM-024",
+      "scene_id": "DEMO_PEDESTRIAN_URBAN_02",
+      "timestamp_iso": "2024-03-15T11:15:10.500Z",
+      "timestamp_relative_s": 10.5,
+      "event_type": "PEDESTRIAN_INTERACTION",
+      "road_user_category": "pedestrian",
+      "observation_description": "Pedestrian expedites gait across ego lane and successfully crosses into the protected median barrier gap.",
+      "source_sensor": "SIM_CAMERA_DETECTOR",
+      "confidence": 0.95,
+      "road_context": "Median Barrier Gap",
+      "evidence_reference": "CAM_PED_DET:0315",
+      "data_origin": "synthetic_demo_data",
+      "status": "observed",
+      "metadata_json": {
+        "pedestrian_exit_state": "median_island_cleared"
+      }
+    },
+    {
+      "record_id": "REC-SIM-025",
+      "scene_id": "DEMO_PEDESTRIAN_URBAN_02",
+      "timestamp_iso": "2024-03-15T11:15:13.000Z",
+      "timestamp_relative_s": 13.0,
+      "event_type": "EGO_TELEMETRY",
+      "road_user_category": "ego_vehicle",
+      "observation_description": "Ego-vehicle resumes forward acceleration; speed reaches 32.4 km/h as lane obstruction clears.",
+      "source_sensor": "SIM_VEHICLE_CAN",
+      "confidence": 1.0,
+      "road_context": "Urban Arterial Corridor",
+      "evidence_reference": "SIM_CAN_FRAME:0390",
+      "data_origin": "synthetic_demo_data",
+      "status": "observed",
+      "metadata_json": {
+        "speed_kmh": 32.4,
+        "acceleration_ms2": 1.1
+      }
+    }
+  ]
+}
