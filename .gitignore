@@ -76,6 +76,7 @@ data/generated/
 # DO NOT commit the actual dataset to GitHub.
 # ------------------------------------------------------------
 data/raw/TIAND_MULTIMODAL_DATASET/
+data/raw/idd_multimodal/
 
 # ------------------------------------------------------------
 # Local environment / secrets
@@ -97,6 +98,7 @@ data/raw/TIAND_MULTIMODAL_DATASET/
 *.bak
 *.swp
 *.swo
+*.agents
 
 # ------------------------------------------------------------
 # Python packaging
