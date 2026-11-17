@@ -77,6 +77,10 @@ data/generated/
 # ------------------------------------------------------------
 data/raw/TIAND_MULTIMODAL_DATASET/
 data/raw/idd_multimodal/
+data/raw/idd_detection/
+data/raw/
+data/processed/idd_detection_yolo/
+data/processed/
 
 # ------------------------------------------------------------
 # Local environment / secrets
